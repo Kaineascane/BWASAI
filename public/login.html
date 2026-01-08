@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BWSAI Portal Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #02040a;
+            --card-bg: rgba(10, 14, 24, 0.9);
+            --accent: #23a6d5;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg-dark);
+            color: #f4f6ff;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        #particleCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        header {
+            padding: 22px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        header .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        header img {
+            width: 44px;
+            height: 44px;
+        }
+        .back-link {
+            padding: 6px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.35);
+            color: #dfe7ff;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+        .back-link:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        .login-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 32px;
+            position: relative;
+            z-index: 1;
+        }
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            background: var(--card-bg);
+            border-radius: 26px;
+            padding: 48px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+        }
+        .form-label {
+            color: #cbd3f9;
+        }
+        .form-control {
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            padding: 12px 14px;
+        }
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 0.15rem rgba(35,166,213,0.3);
+            background: rgba(255,255,255,0.12);
+        }
+        .btn-login {
+            width: 100%;
+            border: none;
+            border-radius: 14px;
+            padding: 12px;
+            margin-top: 4px;
+            background: linear-gradient(135deg, #0f3057, var(--accent));
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            box-shadow: 0 15px 30px rgba(35,166,213,0.35);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px rgba(35,166,213,0.45);
+        }
+        .login-card .text-muted {
+            color: #94a2c7 !important;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particleCanvas"></canvas>
+    <header>
+        <div class="brand">
+            <img src="/assets/logo.svg" alt="BWSAI logo">
+            <div>
+                <strong>BWSAI</strong><br>
+                <small>Barangay Water Smart Access Interface</small>
+            </div>
+        </div>
+        <a class="back-link" href="/landing"><i class="fas fa-arrow-left me-2"></i>Back to Landing</a>
+    </header>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="text-center mb-4">
+                <i class="fas fa-shield-halved fa-3x text-info mb-3"></i>
+                <h2>Welcome Back</h2>
+                <p class="text-muted">Sign in to access your dashboard</p>
+            </div>
+            <div id="alert-container"></div>
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username or Email</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-end-0 text-white"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control border-start-0" id="username" name="username" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-end-0 text-white"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control border-start-0" id="password" name="password" required>
+                        <button class="btn btn-outline-light ms-2" type="button" id="togglePassword"><i class="fas fa-eye"></i></button>
+                    </div>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                </div>
+                <button type="submit" class="btn-login mb-3"><i class="fas fa-right-to-bracket me-2"></i>Sign In</button>
+                <p class="text-center text-muted mb-0">Contact your administrator to create an account</p>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await response.json();
+                if (data.success && data.user) {
+                    showAlert('Login successful! Redirecting...', 'success');
+                    const target = data.user.role === 'admin' ? '/dashboard/admin' : '/dashboard/user';
+                    setTimeout(() => { window.location.href = target; }, 900);
+                } else {
+                    showAlert(data.error || 'Unable to sign in.', 'danger');
+                }
+            } catch (error) {
+                showAlert('An unexpected error occurred.', 'danger');
+            }
+        });
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const input = document.getElementById('password');
+            const icon = this.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+        function showAlert(message, type) {
+            const container = document.getElementById('alert-container');
+            container.innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>`;
+        }
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function initParticles() {
+            const total = 70;
+            particles = [];
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            for (let i = 0; i < total; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2 + 1,
+                    speedX: (Math.random() - 0.5) * 0.7,
+                    speedY: (Math.random() - 0.5) * 0.7
+                });
+            }
+        }
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(255,255,255,0.7)';
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                p.x += p.speedX;
+                p.y += p.speedY;
+                if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+            });
+            requestAnimationFrame(drawParticles);
+        }
+        window.addEventListener('resize', initParticles);
+        initParticles();
+        drawParticles();
+    </script>
+</body>
+</html>
+

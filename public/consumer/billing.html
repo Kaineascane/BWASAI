@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BWSAI Billing</title>
+    <link rel="stylesheet" href="/css/consumer.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+</head>
+<body data-page="billing">
+    <div id="consumer-shell"></div>
+    <template id="page-content">
+        <section class="usage-section mb-4">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div>
+                    <h4>Monthly Usage & Billing</h4>
+                    <p class="text-muted mb-0">Select a month to review consumption, dues, and status.</p>
+                </div>
+                <div class="billing-dropdown">
+                    <select id="billingMonthSelect"></select>
+                </div>
+            </div>
+            <div class="mt-3" id="selectedBillDetails"></div>
+        </section>
+        <section class="usage-section">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="detail-card">
+                        <small class="text-muted text-uppercase">Previous Balance</small>
+                        <strong id="previousBalanceValue">₱0.00</strong>
+                        <span class="text-muted small">Unpaid from earlier months</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="detail-card">
+                        <small class="text-muted text-uppercase">Current Month (<span id="currentMonthLabel">—</span>)</small>
+                        <strong id="currentBalanceValue">₱0.00</strong>
+                        <span class="text-muted small">Latest billing cycle</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="detail-card">
+                        <small class="text-muted text-uppercase">Total Amount Due</small>
+                        <strong id="balanceTotal">₱0.00</strong>
+                        <span class="text-muted small">Previous + Current</span>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive mt-4">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Water Usage (m³)</th>
+                            <th>Amount (₱)</th>
+                            <th>Status</th>
+                            <th>Balance (₱)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="billingTableBody">
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">Loading billing records...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </template>
+    <script src="/js/consumer-shell.js"></script>
+    <script src="/js/consumer-billing.js"></script>
+</body>
+</html>
+

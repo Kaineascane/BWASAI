@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BWSAI | Water Utility Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --brand-primary: #0d7dbb;
+            --brand-secondary: #23a6d5;
+            --brand-dark: #041421;
+            --text-muted: #6c7c8d;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f8fb;
+            color: #0b1d2a;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #fff;
+            border-bottom: 1px solid #eef2f6;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            width: 46px;
+            height: 46px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+            padding: 60px 40px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.6rem;
+            margin-bottom: 16px;
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .hero-actions {
+            margin-top: 24px;
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-actions a {
+            padding: 12px 24px;
+            border-radius: 999px;
+        }
+
+        .slideshow {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            min-height: 320px;
+            box-shadow: 0 25px 55px rgba(6, 29, 43, 0.12);
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .slideshow img.active {
+            opacity: 1;
+        }
+
+        .info-section {
+            padding: 40px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .info-card {
+            border: 1px solid #edf1f5;
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .executive-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+        }
+
+        .executive-card {
+            text-align: center;
+        }
+
+        .executive-card img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 2px solid #edf1f5;
+        }
+
+        @media (max-width: 1200px) {
+            .executive-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .executive-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .contact-panel {
+            margin: 40px;
+            background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+            border-radius: 28px;
+            padding: 32px;
+            color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: space-between;
+        }
+
+        footer {
+            padding: 24px 40px;
+            background: var(--brand-dark);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        footer a {
+            color: #91f1ff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 640px) {
+            header, .hero, .info-section, .contact-panel, footer {
+                padding: 20px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand" style="cursor: pointer;" onclick="window.location.href='/dashboard'">
+            <img src="/assets/logo.svg" alt="HydroTrack logo">
+            <div>
+            <strong>BWSAI</strong><br>
+            <small>Barangay Water Smart Access Interface</small>
+            </div>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="/login" class="btn btn-primary rounded-pill px-4">Login</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Empowering communities through transparent water services.</h1>
+            <p>BWSAI (Barangay Water Smart Access Interface) centralizes billing, analytics, and support so residents and administrators stay in sync—from meter to payment.</p>
+            <div class="hero-actions">
+                <a href="/login" class="btn btn-primary"><i class="fas fa-arrow-right me-2"></i>Access BWSAI</a>
+                <a href="#contact" class="btn btn-outline-secondary">Talk to Support</a>
+            </div>
+        </div>
+        <div class="slideshow" aria-label="System highlights slideshow">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80" class="active" alt="System monitoring">
+            <img src="https://images.unsplash.com/photo-1521791055366-0d553872125f?auto=format&fit=crop&w=1200&q=80" alt="People using water service">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80" alt="Water supply infrastructure">
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-card">
+            <h5><i class="fas fa-shield-check me-2 text-primary"></i>Secure RBAC</h5>
+            <p class="text-muted mb-0">Role-based access ensures administrators and residents see the right tools and analytics in every session.</p>
+        </div>
+        <div class="info-card">
+            <h5><i class="fas fa-chart-line me-2 text-primary"></i>Analytics Driven</h5>
+            <p class="text-muted mb-0">Dashboards summarize cubic meter usage, peso billing, and aging balances so everyone stays informed.</p>
+        </div>
+        <div class="info-card">
+            <h5><i class="fas fa-mobile-screen-button me-2 text-primary"></i>Responsive Experience</h5>
+            <p class="text-muted mb-0">Crafted for desktops, tablets, and phones—monitor the service wherever you are.</p>
+        </div>
+        <div class="info-card">
+            <h5><i class="fas fa-headset me-2 text-primary"></i>Human Support</h5>
+            <p class="text-muted mb-0">Reach the utility office for quick resolutions, questions, or reporting concerns.</p>
+        </div>
+    </section>
+
+    <section class="executive-board-section" style="padding: 60px 40px; background: #fff;">
+        <div class="text-center mb-5">
+            <h2>Executive Board</h2>
+            <p class="text-muted">Meet our leadership team</p>
+        </div>
+        <div class="executive-grid" id="executiveGrid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; max-width: 1400px; margin: 0 auto;">
+            <!-- Executive cards will be loaded here -->
+        </div>
+    </section>
+
+    <section class="contact-panel" id="contact">
+        <div>
+            <h3>Questions or Need to Report a Problem?</h3>
+            <p class="mb-2">Talk directly with the BWSAI administrator.</p>
+            <p class="mb-0"><strong>Mobile:</strong> +63 917 555 1234</p>
+            <p class="mb-0"><strong>Email:</strong> admin@hydrotrack.ph</p>
+        </div>
+        <div>
+            <h5>Office Hours</h5>
+            <p class="mb-1">Monday to Friday · 8:00 AM – 5:00 PM</p>
+            <a href="tel:+639175551234" class="btn btn-light rounded-pill px-4">Call Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <strong>BWSAI Utility Suite</strong><br>
+            <small>© <span id="year"></span> All rights reserved.</small>
+        </div>
+        <div>
+            <span class="me-3"><i class="fab fa-facebook me-1"></i><a href="https://facebook.com" target="_blank" rel="noopener">Facebook Page</a></span>
+            <span><i class="fas fa-phone me-1"></i>+63 917 555 1234</span>
+        </div>
+    </footer>
+
+    <script>
+        const slides = document.querySelectorAll('.slideshow img');
+        let slidePos = 0;
+        setInterval(() => {
+            slides[slidePos].classList.remove('active');
+            slidePos = (slidePos + 1) % slides.length;
+            slides[slidePos].classList.add('active');
+        }, 5000);
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Load executives
+        async function loadExecutives() {
+            try {
+                const response = await fetch('/api/executives');
+                const data = await response.json();
+                const grid = document.getElementById('executiveGrid');
+                if (data.executives && data.executives.length > 0) {
+                    grid.innerHTML = data.executives.map(exec => `
+                        <div class="executive-card" style="text-align: center;">
+                            <img src="${exec.image_url || 'https://via.placeholder.com/200x200?text=No+Image'}" 
+                                 alt="${exec.name}" 
+                                 style="width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; margin-bottom: 12px;">
+                            <div><strong>${exec.name}</strong></div>
+                            <div style="color: #6c7c8d; font-size: 0.9rem;">${exec.title}</div>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading executives:', error);
+            }
+        }
+        loadExecutives();
+    </script>
+</body>
+</html>
+

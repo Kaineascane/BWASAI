@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BWSAI Support</title>
+    <link rel="stylesheet" href="/css/consumer.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+</head>
+<body data-page="support">
+    <div id="consumer-shell"></div>
+    <template id="page-content">
+        <section class="support-card" id="supportDisplay">
+            <h4 id="supportTitle">BWSAI Support Desk</h4>
+            <p id="supportMessage">We are preparing contact details...</p>
+            <div class="mb-2">
+                <p class="mb-1"><i class="fas fa-phone me-2"></i><span data-support="phone">Not available</span></p>
+                <p class="mb-1"><i class="fas fa-envelope me-2"></i><span data-support="email">Not available</span></p>
+                <p class="mb-1"><i class="fas fa-location-dot me-2"></i><span data-support="address">Not available</span></p>
+                <p class="mb-1"><i class="fas fa-clock me-2"></i><span data-support="hours">Not available</span></p>
+            </div>
+            <div class="d-flex gap-3 flex-wrap mt-3">
+                <a id="supportFacebook" href="#" target="_blank" class="btn btn-light btn-sm disabled" rel="noopener">
+                    <i class="fab fa-facebook me-2"></i>Facebook
+                </a>
+                <button class="btn btn-outline-light btn-sm" onclick="window.location.href='/dashboard/user/settings'">
+                    <i class="fas fa-gear me-2"></i>Account Settings
+                </button>
+            </div>
+        </section>
+    </template>
+    <script src="/js/consumer-shell.js"></script>
+    <script src="/js/support.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            SupportCenter.init({ mode: 'view' });
+        });
+    </script>
+</body>
+</html>
+

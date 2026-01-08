@@ -1,0 +1,29 @@
+{
+  "name": "login-dashboard-app",
+  "version": "1.0.0",
+  "description": "A web application with login and dashboard functionality",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "express-session": "^1.18.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.5",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
+  "keywords": [
+    "login",
+    "dashboard",
+    "web-app"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

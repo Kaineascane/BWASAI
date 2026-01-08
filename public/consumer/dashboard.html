@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BWSAI Consumer Dashboard</title>
+    <link rel="stylesheet" href="/css/consumer.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+</head>
+<body data-page="dashboard">
+    <div id="consumer-shell"></div>
+    <template id="page-content">
+        <section class="hero-slider">
+            <div class="slides">
+                <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1400&q=80');"></div>
+                <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1502301197179-65228ab57f78?auto=format&fit=crop&w=1400&q=80');"></div>
+                <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1470246973918-29a93221c455?auto=format&fit=crop&w=1400&q=80');"></div>
+            </div>
+            <div class="hero-overlay">
+                <h2>Smarter Water, Stress-Free Billing</h2>
+                <p>Monitor your usage, bills, and support requests inside BWSAI. Stay updated on outstanding balances and monthly consumption.</p>
+                <div class="hero-badges">
+                    <span><i class="fas fa-chart-line me-2"></i>Live Analytics</span>
+                    <span><i class="fas fa-wallet me-2"></i>Billing Tracker</span>
+                    <span><i class="fas fa-shield-heart me-2"></i>Service Updates</span>
+                </div>
+            </div>
+        </section>
+        <section class="analytics-grid mt-4">
+            <div class="analytics-card">
+                <small>Total Consumption (m³)</small>
+                <strong id="analyticsCubic">0</strong>
+                <span class="text-success"><i class="fas fa-arrow-trend-up me-1"></i>tracking</span>
+            </div>
+            <div class="analytics-card">
+                <small>Months Paid</small>
+                <strong id="analyticsPaid">0</strong>
+                <span class="text-muted">Cleared cycles</span>
+            </div>
+            <div class="analytics-card">
+                <small>Pending Amount (₱)</small>
+                <strong id="analyticsPending">0</strong>
+                <span class="text-warning">Awaiting settlement</span>
+            </div>
+            <div class="analytics-card">
+                <small>Average Bill (₱)</small>
+                <strong id="analyticsAverage">0</strong>
+                <span class="text-muted">Per month</span>
+            </div>
+        </section>
+        <section class="usage-growth-section mt-4">
+            <div class="view-card">
+                <h4 class="mb-3">Water Usage Growth Analytics</h4>
+                <div id="usageGrowthCard" class="growth-card">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <small class="text-muted d-block">Usage Trend</small>
+                            <strong id="growthMessage" class="d-block mt-1">Loading...</strong>
+                            <small id="growthPercentage" class="text-muted"></small>
+                        </div>
+                        <div id="growthIcon" class="growth-icon">
+                            <i class="fas fa-chart-line fa-3x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="usage-section">
+            <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+                <div>
+                    <h4>Upcoming Bills</h4>
+                    <small class="text-muted">Next invoices at a glance</small>
+                </div>
+                <a href="/dashboard/user/billing" class="btn btn-outline-primary btn-sm">Go to billing</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Usage (m³)</th>
+                            <th>Amount (₱)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dashboardBillingBody">
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </template>
+    <script src="/js/consumer-shell.js"></script>
+    <script src="/js/consumer-usage.js"></script>
+    <script src="/js/consumer-dashboard.js"></script>
+</body>
+</html>
+

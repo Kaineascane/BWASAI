@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BWSAI | Lazy-Loading</title>
+    <style>
+        :root {
+            --brand-primary: #0083b0;
+            --brand-secondary: #00b4db;
+            --bg: #03121d;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, rgba(0,180,219,0.25), #03121d 60%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #f5fbff;
+        }
+
+        .loader-card {
+            text-align: center;
+            padding: 40px 54px;
+            border-radius: 28px;
+            background: rgba(3, 18, 29, 0.85);
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+            max-width: 420px;
+        }
+
+        .loader-card img {
+            width: 90px;
+            margin-bottom: 20px;
+        }
+
+        .spinner {
+            width: 64px;
+            height: 64px;
+            border: 5px solid rgba(255,255,255,0.1);
+            border-top-color: var(--brand-secondary);
+            border-radius: 50%;
+            margin: 24px auto 12px;
+            animation: spin 1s linear infinite;
+        }
+
+        .lazy-label {
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--brand-secondary);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-card">
+        <img src="/assets/logo.svg" alt="BWSAI logo">
+        <h2>BWSAI Utility Portal</h2>
+        <p>We are preparing a personalized dashboard experience for you.</p>
+        <div class="spinner" role="status" aria-label="Loading spinner"></div>
+        <p class="lazy-label">Lazy-Loading</p>
+    </div>
+
+    <script>
+        async function proceed() {
+            try {
+                const response = await fetch('/api/user');
+                if (response.ok) {
+                    const { user } = await response.json();
+                    const target = user.role === 'admin' ? '/dashboard/admin' : '/dashboard/user';
+                    window.location.href = target;
+                    return;
+                }
+            } catch (error) {
+                console.warn('Session check failed, sending to landing.', error);
+            }
+            window.location.href = '/login';
+        }
+
+        setTimeout(proceed, 1500);
+    </script>
+</body>
+</html>
+

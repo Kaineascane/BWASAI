@@ -1,0 +1,311 @@
+:root {
+    --nav-width: 260px;
+    --brand-primary: #0d7dbb;
+    --brand-secondary: #23a6d5;
+    --surface: #f2f6fa;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--surface);
+    color: #061320;
+}
+
+.app-shell {
+    display: flex;
+}
+
+.user-sidebar {
+    width: var(--nav-width);
+    background: linear-gradient(180deg, #041421, #0d2a3f);
+    color: #fff;
+    min-height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.2s ease;
+}
+
+.user-sidebar.collapsed {
+    width: 88px;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 22px 20px;
+    cursor: pointer;
+}
+
+.sidebar-logo img {
+    width: 44px;
+}
+
+.user-sidebar.collapsed .sidebar-logo div,
+.user-sidebar.collapsed .sidebar-label,
+.user-sidebar.collapsed .sidebar-footer span {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar-nav {
+    list-style: none;
+    padding: 0 12px;
+    margin: 12px 0 0;
+    flex: 1;
+}
+
+.sidebar-link {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    border: none;
+    width: 100%;
+    background: transparent;
+    text-align: left;
+}
+
+.sidebar-link.active,
+.sidebar-link:hover {
+    background: rgba(35, 166, 213, 0.2);
+    color: #fff;
+}
+
+.sidebar-footer {
+    padding: 14px;
+}
+
+.content-area {
+    margin-left: var(--nav-width);
+    width: calc(100% - var(--nav-width));
+    padding: 24px;
+    min-height: 100vh;
+    transition: margin-left 0.2s ease, width 0.2s ease;
+}
+
+.user-sidebar.collapsed ~ .content-area {
+    margin-left: 88px;
+    width: calc(100% - 88px);
+}
+
+.user-topbar {
+    background: #fff;
+    border-radius: 20px;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(5, 26, 38, 0.08);
+    margin-bottom: 24px;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.topbar-left button {
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(13, 125, 187, 0.12);
+    color: var(--brand-primary);
+}
+
+.profile-menu {
+    position: relative;
+}
+
+.profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--brand-primary), var(--brand-secondary));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(3, 18, 29, 0.12);
+    display: none;
+    min-width: 180px;
+    padding: 8px 0;
+    z-index: 4;
+}
+
+.profile-dropdown.show {
+    display: block;
+}
+
+.profile-dropdown button {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 10px 16px;
+}
+
+.hero-slider {
+    position: relative;
+    border-radius: 26px;
+    overflow: hidden;
+    min-height: 300px;
+    box-shadow: 0 20px 40px rgba(7, 34, 47, 0.15);
+}
+
+.slides {
+    position: relative;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.65));
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px;
+    color: #fff;
+}
+
+.hero-badges {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+.hero-badges span {
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.2);
+    font-size: 0.85rem;
+}
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.analytics-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 12px 28px rgba(7, 34, 47, 0.08);
+}
+
+.usage-section {
+    background: #fff;
+    border-radius: 24px;
+    padding: 24px;
+    box-shadow: 0 20px 45px rgba(6, 29, 43, 0.08);
+}
+
+.detail-card {
+    background: #f6f8fb;
+    border-radius: 18px;
+    border: 1px solid #e1e8f2;
+    padding: 16px;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.detail-card strong {
+    font-size: 1.1rem;
+    color: #061320;
+}
+
+.status-tag {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.status-Paid { background: rgba(25,135,84,0.15); color: #198754; }
+.status-Pending { background: rgba(255,193,7,0.2); color: #b78504; }
+.status-Not-Paid { background: rgba(220,53,69,0.18); color: #d63348; }
+.status-Balance { background: rgba(108,117,125,0.2); color: #495057; }
+.status-cut-off { background: rgba(220,53,69,0.25); color: #d63348; font-weight: bold; }
+
+.billing-dropdown select {
+    border-radius: 12px;
+    border: 2px solid #e0e6ef;
+    padding: 8px 12px;
+}
+
+.support-card {
+    background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+    color: #fff;
+    border-radius: 22px;
+    padding: 24px;
+}
+
+@media (max-width: 992px) {
+    .user-sidebar {
+        position: static;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-height: auto;
+    }
+    .content-area,
+    .user-sidebar.collapsed ~ .content-area {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
